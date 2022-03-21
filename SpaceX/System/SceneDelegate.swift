@@ -17,8 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.backgroundColor = .systemBackground
-        window?.rootViewController = ViewController()
+        window?.backgroundColor = .systemPink
+        window?.rootViewController = MainPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
