@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    let page = MainPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -18,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemPink
-        window?.rootViewController = MainPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        window?.rootViewController = page
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

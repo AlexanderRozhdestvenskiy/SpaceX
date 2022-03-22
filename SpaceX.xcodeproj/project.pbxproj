@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89B7FB5C27EA6ED900E270A1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B7FB5B27EA6ED900E270A1 /* MainViewController.swift */; };
 		89EB72DE27E9153900E7B9C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EB72DD27E9153900E7B9C3 /* AppDelegate.swift */; };
 		89EB72E027E9153900E7B9C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EB72DF27E9153900E7B9C3 /* SceneDelegate.swift */; };
 		89EB72E227E9153900E7B9C3 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EB72E127E9153900E7B9C3 /* MainPageViewController.swift */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89B7FB5B27EA6ED900E270A1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		89B7FB5D27EA74CE00E270A1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		89EB72DA27E9153900E7B9C3 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89EB72DD27E9153900E7B9C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89EB72DF27E9153900E7B9C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		89EB72D127E9153900E7B9C3 = {
 			isa = PBXGroup;
 			children = (
+				89B7FB5D27EA74CE00E270A1 /* README.md */,
 				89EB72DC27E9153900E7B9C3 /* SpaceX */,
 				89EB72DB27E9153900E7B9C3 /* Products */,
 			);
@@ -56,6 +60,7 @@
 			children = (
 				89EB72F127E9186000E7B9C3 /* System */,
 				89EB72E127E9153900E7B9C3 /* MainPageViewController.swift */,
+				89B7FB5B27EA6ED900E270A1 /* MainViewController.swift */,
 				89EB72F227E9186F00E7B9C3 /* Files */,
 			);
 			path = SpaceX;
@@ -153,6 +158,7 @@
 				89EB72E227E9153900E7B9C3 /* MainPageViewController.swift in Sources */,
 				89EB72DE27E9153900E7B9C3 /* AppDelegate.swift in Sources */,
 				89EB72E027E9153900E7B9C3 /* SceneDelegate.swift in Sources */,
+				89B7FB5C27EA6ED900E270A1 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

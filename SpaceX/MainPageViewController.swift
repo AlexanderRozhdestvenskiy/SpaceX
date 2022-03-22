@@ -31,3 +31,17 @@ class MainPageViewController: UIPageViewController {
         
     }
 }
+
+extension MainPageViewController: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        return nil
+    }
+}
+
+extension MainPageViewController: UIPageViewControllerDelegate {
+    
+}
