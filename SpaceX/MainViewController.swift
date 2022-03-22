@@ -16,11 +16,23 @@ class MainViewController: UIViewController {
     let settingButton = UIButton()
     
     let horizontalScrollView = UIScrollView()
+    let heightView = UIView()
+    let diameterView = UIView()
+    let massView = UIView()
+    let idLeoView = UIView()
     
     
+    
+    
+    
+    let buttonDetail = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setup()
+        style()
+        layout()
     }
     
     private func setup() {
