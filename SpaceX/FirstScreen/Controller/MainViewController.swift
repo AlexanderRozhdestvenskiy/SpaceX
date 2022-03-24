@@ -7,9 +7,22 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
-    let verticalScrollView = UIScrollView()
+    private lazy var verticalScrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.backgroundColor = .black
+        scroll.showsVerticalScrollIndicator = false
+        return scroll
+    }()
+    
+    private lazy var contentView: UIView = {
+        let content = UIView()
+        content.translatesAutoresizingMaskIntoConstraints = false
+        content.backgroundColor = .black
+        return content
+    }()
     
     let mainBlackView = UIView()
     
@@ -30,21 +43,15 @@ class MainViewController: UIViewController {
     let costLabel = UILabel()
     let costData = UILabel()
     
-    let firstStage = UILabel()
-    let firstStagenumberOfEnginesLabel = UILabel()
-    let firstStagenumberOfEnginesData = UILabel()
-    let firstStageamountOfFuelInTonsLabel = UILabel()
-    let firstStageamountOfFuelInTonsData = UILabel()
-    let firstStagecombustionTimeInSecondLabel = UILabel()
-    let firstStagecombustionTimeInSecondData = UILabel()
+    let firstStorage = StageView(title: "Первая ступень",
+                                 engineData: "27",
+                                 fuelData: "308,6",
+                                 timeData: "593")
     
-    let secondStage = UILabel()
-    let secondStagenumberOfEnginesLabel = UILabel()
-    let secondStagenumberOfEnginesData = UILabel()
-    let secondStageamountOfFuelInTonsLabel = UILabel()
-    let secondStageamountOfFuelInTonsData = UILabel()
-    let secondStagecombustionTimeInSecondLabel = UILabel()
-    let secondStagecombustionTimeInSecondData = UILabel()
+    let secondStorage = StageView(title: "Вторая ступень",
+                                  engineData: "56",
+                                  fuelData: "476.6",
+                                  timeData: "354")
     
     let buttonDetail = UIButton()
     
@@ -62,7 +69,6 @@ class MainViewController: UIViewController {
     
     private func style() {
         imageRocket.translatesAutoresizingMaskIntoConstraints = false
-        imageRocket.contentMode = .scaleAspectFit
         imageRocket.image = UIImage(named: "2")
         
         mainBlackView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,48 +83,74 @@ class MainViewController: UIViewController {
         settingButton.translatesAutoresizingMaskIntoConstraints = false
         settingButton.setImage(UIImage(systemName: "gearshape")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
         
-        heightView.translatesAutoresizingMaskIntoConstraints = false
-        diameterView.translatesAutoresizingMaskIntoConstraints = false
-        massView.translatesAutoresizingMaskIntoConstraints = false
-        idLeoView.translatesAutoresizingMaskIntoConstraints = false
+        firstLaunchLabel.translatesAutoresizingMaskIntoConstraints = false
+        firstLaunchLabel.textColor = .systemGray4
+        firstLaunchLabel.text = "Первый запуск"
+        firstLaunchLabel.textAlignment = .left
+        
+        firstLaunchData.translatesAutoresizingMaskIntoConstraints = false
+        firstLaunchData.textColor = .systemGray5
+        firstLaunchData.text = "7 февраля, 2018"
+        firstLaunchData.textAlignment = .right
+        
+        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+        countryLabel.textColor = .systemGray4
+        countryLabel.text = "Страна"
+        countryLabel.textAlignment = .left
+        
+        countryData.translatesAutoresizingMaskIntoConstraints = false
+        countryData.textColor = .systemGray5
+        countryData.text = "США"
+        countryData.textAlignment = .right
+        
+        costLabel.translatesAutoresizingMaskIntoConstraints = false
+        costLabel.textColor = .systemGray4
+        costLabel.text = "Стоимость запуска"
+        costLabel.textAlignment = .left
+        
+        costData.translatesAutoresizingMaskIntoConstraints = false
+        costData.textColor = .systemGray5
+        costData.text = "$90 млн"
+        costData.textAlignment = .right
+
+        buttonDetail.translatesAutoresizingMaskIntoConstraints = false
+        buttonDetail.setTitle("Go", for: .normal)
+        buttonDetail.backgroundColor = .systemBlue
     }
     
     private func layout() {
-        view.addSubview(imageRocket)
-        view.addSubview(mainBlackView)
-        view.addSubview(titleLabel)
-        view.addSubview(settingButton)
+        view.addSubview(verticalScrollView)
+        verticalScrollView.addSubview(contentView)
         
-        view.addSubview(heightView)
-        view.addSubview(diameterView)
-        view.addSubview(massView)
-        view.addSubview(idLeoView)
+        contentView.addSubview(imageRocket)
+        contentView.addSubview(mainBlackView)
+        contentView.addSubview(buttonDetail)
         
-        imageRocket.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        imageRocket.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -132).isActive = true
-        imageRocket.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        verticalScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        verticalScrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        verticalScrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        verticalScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        mainBlackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mainBlackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mainBlackView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -132).isActive = true
-        mainBlackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: verticalScrollView.widthAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: verticalScrollView.topAnchor).isActive = true
+        contentView.leftAnchor.constraint(equalTo: verticalScrollView.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: verticalScrollView.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: verticalScrollView.bottomAnchor).isActive = true
         
-        titleLabel.topAnchor.constraint(equalTo: mainBlackView.topAnchor, constant: 32).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: mainBlackView.leadingAnchor, constant: 24).isActive = true
+        imageRocket.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        imageRocket.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        imageRocket.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        imageRocket.heightAnchor.constraint(equalTo: imageRocket.widthAnchor, multiplier: 2778 / 1284).isActive = true
         
-        settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
-        settingButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
+        mainBlackView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        mainBlackView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        mainBlackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 360).isActive = true
+        mainBlackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
-        heightView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        heightView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24).isActive = true
-        
-        diameterView.leadingAnchor.constraint(equalTo: heightView.trailingAnchor, constant: 16).isActive = true
-        diameterView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24).isActive = true
-        
-        massView.leadingAnchor.constraint(equalTo: diameterView.trailingAnchor, constant: 16).isActive = true
-        massView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24).isActive = true
-        
-        idLeoView.leadingAnchor.constraint(equalTo: massView.trailingAnchor, constant: 16).isActive = true
-        idLeoView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24).isActive = true
+        buttonDetail.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        buttonDetail.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        buttonDetail.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        buttonDetail.topAnchor.constraint(equalTo: imageRocket.bottomAnchor, constant: 24).isActive = true
+        buttonDetail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24).isActive = true
     }
 }
