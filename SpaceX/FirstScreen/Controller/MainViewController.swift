@@ -53,7 +53,7 @@ final class MainViewController: UIViewController {
                                   fuelData: "476.6",
                                   timeData: "354")
     
-    let buttonDetail = UIButton()
+    let buttonDetail = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,17 +114,15 @@ final class MainViewController: UIViewController {
         costData.textAlignment = .right
 
         buttonDetail.translatesAutoresizingMaskIntoConstraints = false
-        buttonDetail.setTitle("Go", for: .normal)
-        buttonDetail.backgroundColor = .systemBlue
+        buttonDetail.setTitle("Посмотреть запуски", for: .normal)
+        buttonDetail.backgroundColor = .squareBackground
+        buttonDetail.layer.cornerRadius = 16
+        buttonDetail.tintColor = .white
     }
     
     private func layout() {
-        view.addSubview(verticalScrollView)
         verticalScrollView.addSubview(contentView)
-        
-        contentView.addSubview(imageRocket)
-        contentView.addSubview(mainBlackView)
-        contentView.addSubview(buttonDetail)
+        view.addSubview(verticalScrollView)
         
         verticalScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         verticalScrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -137,20 +135,81 @@ final class MainViewController: UIViewController {
         contentView.rightAnchor.constraint(equalTo: verticalScrollView.rightAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: verticalScrollView.bottomAnchor).isActive = true
         
+        contentView.addSubview(imageRocket)
         imageRocket.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageRocket.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         imageRocket.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         imageRocket.heightAnchor.constraint(equalTo: imageRocket.widthAnchor, multiplier: 2778 / 1284).isActive = true
         
+        contentView.addSubview(mainBlackView)
+        mainBlackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 248).isActive = true
         mainBlackView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         mainBlackView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        mainBlackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 360).isActive = true
         mainBlackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
-        buttonDetail.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        buttonDetail.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        buttonDetail.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        buttonDetail.topAnchor.constraint(equalTo: imageRocket.bottomAnchor, constant: 24).isActive = true
+        contentView.addSubview(titleLabel)
+        titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 24).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: mainBlackView.topAnchor, constant: 32).isActive = true
+        
+        contentView.addSubview(settingButton)
+        settingButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
+        settingButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
+        
+        contentView.addSubview(heightView)
+        heightView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        heightView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32).isActive = true
+        
+        contentView.addSubview(diameterView)
+        diameterView.leftAnchor.constraint(equalTo: heightView.rightAnchor, constant: 16).isActive = true
+        diameterView.topAnchor.constraint(equalTo: heightView.topAnchor).isActive = true
+        
+        contentView.addSubview(massView)
+        massView.leftAnchor.constraint(equalTo: diameterView.rightAnchor, constant: 16).isActive = true
+        massView.topAnchor.constraint(equalTo: heightView.topAnchor).isActive = true
+        
+        contentView.addSubview(idLeoView)
+        idLeoView.leftAnchor.constraint(equalTo: massView.rightAnchor, constant: 16).isActive = true
+        idLeoView.topAnchor.constraint(equalTo: heightView.topAnchor).isActive = true
+        
+        contentView.addSubview(firstLaunchLabel)
+        firstLaunchLabel.topAnchor.constraint(equalTo: heightView.bottomAnchor, constant: 32).isActive = true
+        firstLaunchLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        
+        contentView.addSubview(firstLaunchData)
+        firstLaunchData.topAnchor.constraint(equalTo: firstLaunchLabel.topAnchor).isActive = true
+        firstLaunchData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        
+        contentView.addSubview(countryLabel)
+        countryLabel.topAnchor.constraint(equalTo: firstLaunchLabel.bottomAnchor, constant: 16).isActive = true
+        countryLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        
+        contentView.addSubview(countryData)
+        countryData.topAnchor.constraint(equalTo: countryLabel.topAnchor).isActive = true
+        countryData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        
+        contentView.addSubview(costLabel)
+        costLabel.topAnchor.constraint(equalTo: countryLabel.bottomAnchor, constant: 16).isActive = true
+        costLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        
+        contentView.addSubview(costData)
+        costData.topAnchor.constraint(equalTo: costLabel.topAnchor).isActive = true
+        costData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        
+        contentView.addSubview(firstStorage)
+        firstStorage.topAnchor.constraint(equalTo: costLabel.bottomAnchor, constant: 32).isActive = true
+        firstStorage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        firstStorage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+
+        contentView.addSubview(secondStorage)
+        secondStorage.topAnchor.constraint(equalTo: firstStorage.bottomAnchor, constant: 32).isActive = true
+        secondStorage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        secondStorage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        
+        contentView.addSubview(buttonDetail)
+        buttonDetail.topAnchor.constraint(equalTo: secondStorage.bottomAnchor, constant: 32).isActive = true
+        buttonDetail.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32).isActive = true
+        buttonDetail.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32).isActive = true
+        buttonDetail.heightAnchor.constraint(equalToConstant: 64).isActive = true
         buttonDetail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24).isActive = true
     }
 }

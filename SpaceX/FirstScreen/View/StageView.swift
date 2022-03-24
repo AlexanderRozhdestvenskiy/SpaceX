@@ -94,5 +94,6 @@ class StageView: UIView {
         
         combustionTimeInSecondData.topAnchor.constraint(equalTo: amountOfFuelInTonsData.bottomAnchor, constant: 16).isActive = true
         combustionTimeInSecondData.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        combustionTimeInSecondData.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 }

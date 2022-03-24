@@ -29,7 +29,7 @@ class SquareView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 96, height: 96)
+        return CGSize(width: 100, height: 100)
     }
     
     private func style() {
