@@ -12,6 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     let page = MainPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    let setting = SettingViewController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -19,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = MainViewController()
+        window?.rootViewController = setting
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
