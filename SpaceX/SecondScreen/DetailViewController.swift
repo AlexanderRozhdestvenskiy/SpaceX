@@ -9,13 +9,17 @@ import UIKit
 
 final class DetailViewController: UIViewController {
     
-    var detailViewModel: [DetailViewModel] = [DetailViewModel(name: "Go", date: "454545545454", ok: true), DetailViewModel(name: "hfggfgf", date: "6554646474746", ok: false)]
+    var detailViewModel: [DetailViewModel] = [
+        DetailViewModel(name: "Falcon Sat", date: "22 июня, 2021", ok: true),
+        DetailViewModel(name: "Heavy God", date: "14 сентября, 2020", ok: false),
+        DetailViewModel(name: "Sweet Win", date: "3 августа, 2021", ok: true),
+        DetailViewModel(name: "Start All Gane", date: "12 января, 2019", ok: false)
+    ]
     
-    private let table = UITableView()
+    private let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         setup()
         style()
@@ -23,11 +27,10 @@ final class DetailViewController: UIViewController {
     }
     
     private func setup() {
-        table.dataSource = self
-        table.delegate = self
+        collection.dataSource = self
+        collection.delegate = self
         
-        table.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.reuseID)
-        table.rowHeight = DetailTableViewCell.rowHeight
+        collection.register(DetailCollectionViewCell.self, forCellWithReuseIdentifier: DetailCollectionViewCell.reuseID)
     }
     
     private func style() {
@@ -36,37 +39,41 @@ final class DetailViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.isHidden = false
         
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.backgroundColor = .black
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .black
     }
     
     private func layout() {
-        view.addSubview(table)
+        view.addSubview(collection)
         
-        table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-        table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24).isActive = true
-        table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24).isActive = true
-        table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
+        collection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24).isActive = true
+        collection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24).isActive = true
+        collection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 
 }
 
-extension DetailViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension DetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return detailViewModel.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let detail = detailViewModel[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.reuseID, for: indexPath) as! DetailTableViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.reuseID, for: indexPath) as! DetailCollectionViewCell
         cell.configure(with: detail)
         
         return cell
     }
+}
+
+extension DetailViewController: UICollectionViewDelegate {
     
 }
 
-extension DetailViewController: UITableViewDelegate {
-    
+extension DetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collection.frame.size.width, height: 100)
+    }
 }

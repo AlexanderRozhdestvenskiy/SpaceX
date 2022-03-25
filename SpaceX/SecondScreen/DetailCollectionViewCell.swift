@@ -13,19 +13,18 @@ struct DetailViewModel {
     let ok: Bool
 }
 
-final class DetailTableViewCell: UITableViewCell {
+final class DetailCollectionViewCell: UICollectionViewCell {
     
     let viewModel: DetailViewModel? = nil
 
     static let reuseID = "Cell"
-    static let rowHeight: CGFloat = 100
     
     let nameLabel = UILabel()
     let dataLabel = UILabel()
     let statusImage = UIImageView()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setup()
         layout()
@@ -55,24 +54,24 @@ final class DetailTableViewCell: UITableViewCell {
     }
     
     private func layout() {
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(dataLabel)
-        contentView.addSubview(statusImage)
+        addSubview(nameLabel)
+        addSubview(dataLabel)
+        addSubview(statusImage)
         
-        nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -4).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -4).isActive = true
         
         dataLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
         dataLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
         
         statusImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24).isActive = true
-        statusImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        statusImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         statusImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
         statusImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 
-extension DetailTableViewCell {
+extension DetailCollectionViewCell {
     func configure(with vm: DetailViewModel) {
         
         nameLabel.text = vm.name
