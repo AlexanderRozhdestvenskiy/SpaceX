@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    let page = MainPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    let start = UINavigationController(rootViewController: MainPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
     let setting = SettingViewController()
     let main = UINavigationController(rootViewController: MainViewController())
     
@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = main
+        window?.rootViewController = start
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

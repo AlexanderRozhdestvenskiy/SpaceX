@@ -203,7 +203,7 @@ final class MainViewController: UIViewController {
         buttonDetail.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32).isActive = true
         buttonDetail.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32).isActive = true
         buttonDetail.heightAnchor.constraint(equalToConstant: 64).isActive = true
-        buttonDetail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32).isActive = true
+        buttonDetail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -80).isActive = true
     }
 }
 
