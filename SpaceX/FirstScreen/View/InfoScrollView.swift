@@ -28,7 +28,7 @@ final class InfoScrollView: UIView {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.spacing = 16
+        stack.spacing = 12
         return stack
     }()
     

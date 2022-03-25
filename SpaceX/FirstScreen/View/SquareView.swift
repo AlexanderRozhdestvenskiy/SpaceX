@@ -29,13 +29,13 @@ class SquareView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: 96, height: 96)
     }
     
     private func style() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .squareBackground
-        layer.cornerRadius = 36
+        layer.cornerRadius = 32
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical

@@ -74,6 +74,9 @@ final class SettingViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = .black
+        navigationItem.title = "Настройки"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Закрыть", style: .plain, target: self, action: #selector(cancelTap))
     }
     
     private func style() {
@@ -140,5 +143,11 @@ final class SettingViewController: UIViewController {
         idLeoSegmentControl.heightAnchor.constraint(equalToConstant: heightSegment).isActive = true
         idLeoSegmentControl.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
         idLeoSegmentControl.centerYAnchor.constraint(equalTo: idLeoLabel.centerYAnchor).isActive = true
+    }
+}
+
+extension SettingViewController {
+    @objc func cancelTap(_ sender: UIBarButtonItem) {
+        
     }
 }

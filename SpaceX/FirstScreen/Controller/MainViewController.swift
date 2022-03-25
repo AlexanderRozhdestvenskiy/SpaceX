@@ -24,32 +24,32 @@ final class MainViewController: UIViewController {
         return content
     }()
     
-    let mainBlackView = UIView()
+    private let mainBlackView = UIView()
     
-    let imageRocket = UIImageView()
-    let titleLabel = UILabel()
-    let settingButton = UIButton()
+    private let imageRocket = UIImageView()
+    private let titleLabel = UILabel()
+    private let settingButton = UIButton()
     
-    let infoScrollView = InfoScrollView()
+    private let infoScrollView = InfoScrollView()
     
-    let firstLaunchLabel = UILabel()
-    let firstLaunchData = UILabel()
-    let countryLabel = UILabel()
-    let countryData = UILabel()
-    let costLabel = UILabel()
-    let costData = UILabel()
+    private let firstLaunchLabel = UILabel()
+    private let firstLaunchData = UILabel()
+    private let countryLabel = UILabel()
+    private let countryData = UILabel()
+    private let costLabel = UILabel()
+    private let costData = UILabel()
     
-    let firstStorage = StageView(title: "Первая ступень",
+    private let firstStorage = StageView(title: "Первая ступень",
                                  engineData: "27",
                                  fuelData: "308,6",
                                  timeData: "593")
     
-    let secondStorage = StageView(title: "Вторая ступень",
+    private let secondStorage = StageView(title: "Вторая ступень",
                                   engineData: "56",
                                   fuelData: "476.6",
                                   timeData: "354")
     
-    let buttonDetail = UIButton(type: .system)
+    private let buttonDetail = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,12 @@ final class MainViewController: UIViewController {
         setup()
         style()
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setup() {
@@ -78,6 +84,7 @@ final class MainViewController: UIViewController {
         
         settingButton.translatesAutoresizingMaskIntoConstraints = false
         settingButton.setImage(UIImage(systemName: "gearshape")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        settingButton.addTarget(self, action: #selector(settingTap), for: .touchUpInside)
         
         firstLaunchLabel.translatesAutoresizingMaskIntoConstraints = false
         firstLaunchLabel.textColor = .systemGray4
@@ -114,6 +121,7 @@ final class MainViewController: UIViewController {
         buttonDetail.backgroundColor = .squareBackground
         buttonDetail.layer.cornerRadius = 16
         buttonDetail.tintColor = .white
+        buttonDetail.addTarget(self, action: #selector(detailTap), for: .touchUpInside)
     }
     
     private func layout() {
@@ -132,7 +140,7 @@ final class MainViewController: UIViewController {
         contentView.bottomAnchor.constraint(equalTo: verticalScrollView.bottomAnchor).isActive = true
         
         contentView.addSubview(imageRocket)
-        imageRocket.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        imageRocket.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -48).isActive = true
         imageRocket.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         imageRocket.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         imageRocket.heightAnchor.constraint(equalTo: imageRocket.widthAnchor, multiplier: 2778 / 1284).isActive = true
@@ -144,57 +152,69 @@ final class MainViewController: UIViewController {
         mainBlackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
         contentView.addSubview(titleLabel)
-        titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 24).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: mainBlackView.topAnchor, constant: 32).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: mainBlackView.topAnchor, constant: 48).isActive = true
         
         contentView.addSubview(settingButton)
         settingButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        settingButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
+        settingButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32).isActive = true
         
         contentView.addSubview(infoScrollView)
         infoScrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32).isActive = true
-        infoScrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        infoScrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        infoScrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24).isActive = true
+        infoScrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24).isActive = true
         
         contentView.addSubview(firstLaunchLabel)
-        firstLaunchLabel.topAnchor.constraint(equalTo: infoScrollView.bottomAnchor, constant: 32).isActive = true
-        firstLaunchLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        firstLaunchLabel.topAnchor.constraint(equalTo: infoScrollView.bottomAnchor, constant: 40).isActive = true
+        firstLaunchLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 24).isActive = true
         
         contentView.addSubview(firstLaunchData)
         firstLaunchData.topAnchor.constraint(equalTo: firstLaunchLabel.topAnchor).isActive = true
-        firstLaunchData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        firstLaunchData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
         
         contentView.addSubview(countryLabel)
         countryLabel.topAnchor.constraint(equalTo: firstLaunchLabel.bottomAnchor, constant: 16).isActive = true
-        countryLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        countryLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 24).isActive = true
         
         contentView.addSubview(countryData)
         countryData.topAnchor.constraint(equalTo: countryLabel.topAnchor).isActive = true
-        countryData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        countryData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
         
         contentView.addSubview(costLabel)
         costLabel.topAnchor.constraint(equalTo: countryLabel.bottomAnchor, constant: 16).isActive = true
-        costLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        costLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 24).isActive = true
         
         contentView.addSubview(costData)
         costData.topAnchor.constraint(equalTo: costLabel.topAnchor).isActive = true
-        costData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        costData.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
         
         contentView.addSubview(firstStorage)
-        firstStorage.topAnchor.constraint(equalTo: costLabel.bottomAnchor, constant: 32).isActive = true
-        firstStorage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        firstStorage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        firstStorage.topAnchor.constraint(equalTo: costLabel.bottomAnchor, constant: 40).isActive = true
+        firstStorage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 24).isActive = true
+        firstStorage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
 
         contentView.addSubview(secondStorage)
-        secondStorage.topAnchor.constraint(equalTo: firstStorage.bottomAnchor, constant: 32).isActive = true
-        secondStorage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        secondStorage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
+        secondStorage.topAnchor.constraint(equalTo: firstStorage.bottomAnchor, constant: 40).isActive = true
+        secondStorage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 24).isActive = true
+        secondStorage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
         
         contentView.addSubview(buttonDetail)
-        buttonDetail.topAnchor.constraint(equalTo: secondStorage.bottomAnchor, constant: 32).isActive = true
+        buttonDetail.topAnchor.constraint(equalTo: secondStorage.bottomAnchor, constant: 40).isActive = true
         buttonDetail.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32).isActive = true
         buttonDetail.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32).isActive = true
         buttonDetail.heightAnchor.constraint(equalToConstant: 64).isActive = true
-        buttonDetail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24).isActive = true
+        buttonDetail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32).isActive = true
+    }
+}
+
+extension MainViewController {
+    @objc func settingTap(_ sender: UIButton) {
+        let setting = UINavigationController(rootViewController: SettingViewController())  
+        self.present(setting, animated: true)
+    }
+    
+    @objc func detailTap(_ sender: UIButton) {
+        let detail = DetailViewController()
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }
