@@ -12,8 +12,8 @@ final class SettingViewController: UIViewController {
     private let heightAndDiameterArray = ["m", "ft"]
     private let massAndIdLeoArray = ["kg", "lb"]
     
-    let widthSegment: CGFloat = 128
-    let heightSegment: CGFloat = 36
+    private let widthSegment: CGFloat = 128
+    private let heightSegment: CGFloat = 36
     
     private let heightLabel = UILabel()
     private let diameterLabel = UILabel()

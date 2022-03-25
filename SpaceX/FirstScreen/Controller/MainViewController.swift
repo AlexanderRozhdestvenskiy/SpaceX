@@ -30,11 +30,7 @@ final class MainViewController: UIViewController {
     let titleLabel = UILabel()
     let settingButton = UIButton()
     
-    let horizontalScrollView = UIScrollView()
-    let heightView = SquareView(value: "229.6", title: "Высота, ft")
-    let diameterView = SquareView(value: "39.9", title: "Диаметр, ft")
-    let massView = SquareView(value: "3,125,735", title: "Масса, lb")
-    let idLeoView = SquareView(value: "4,547.65", title: "Нагрузка, tn")
+    let infoScrollView = InfoScrollView()
     
     let firstLaunchLabel = UILabel()
     let firstLaunchData = UILabel()
@@ -155,24 +151,13 @@ final class MainViewController: UIViewController {
         settingButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
         settingButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
         
-        contentView.addSubview(heightView)
-        heightView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        heightView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32).isActive = true
-        
-        contentView.addSubview(diameterView)
-        diameterView.leftAnchor.constraint(equalTo: heightView.rightAnchor, constant: 16).isActive = true
-        diameterView.topAnchor.constraint(equalTo: heightView.topAnchor).isActive = true
-        
-        contentView.addSubview(massView)
-        massView.leftAnchor.constraint(equalTo: diameterView.rightAnchor, constant: 16).isActive = true
-        massView.topAnchor.constraint(equalTo: heightView.topAnchor).isActive = true
-        
-        contentView.addSubview(idLeoView)
-        idLeoView.leftAnchor.constraint(equalTo: massView.rightAnchor, constant: 16).isActive = true
-        idLeoView.topAnchor.constraint(equalTo: heightView.topAnchor).isActive = true
+        contentView.addSubview(infoScrollView)
+        infoScrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32).isActive = true
+        infoScrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        infoScrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
         
         contentView.addSubview(firstLaunchLabel)
-        firstLaunchLabel.topAnchor.constraint(equalTo: heightView.bottomAnchor, constant: 32).isActive = true
+        firstLaunchLabel.topAnchor.constraint(equalTo: infoScrollView.bottomAnchor, constant: 32).isActive = true
         firstLaunchLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
         
         contentView.addSubview(firstLaunchData)
