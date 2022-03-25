@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		894E16A727EDB974002041C0 /* InfoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E16A627EDB974002041C0 /* InfoScrollView.swift */; };
+		894E16A927EDE56E002041C0 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E16A827EDE56E002041C0 /* DetailTableViewCell.swift */; };
 		899ABB9827EB459500BC348F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899ABB9727EB459500BC348F /* DetailViewController.swift */; };
 		899ABB9A27EB45AA00BC348F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899ABB9927EB45AA00BC348F /* SettingViewController.swift */; };
 		89B7FB5C27EA6ED900E270A1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B7FB5B27EA6ED900E270A1 /* MainViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		894E16A627EDB974002041C0 /* InfoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoScrollView.swift; sourceTree = "<group>"; };
+		894E16A827EDE56E002041C0 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		899ABB9727EB459500BC348F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		899ABB9927EB45AA00BC348F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		89B7FB5B27EA6ED900E270A1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				899ABB9727EB459500BC348F /* DetailViewController.swift */,
+				894E16A827EDE56E002041C0 /* DetailTableViewCell.swift */,
 			);
 			path = SecondScreen;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				899ABB9A27EB45AA00BC348F /* SettingViewController.swift in Sources */,
 				89B9D97E27EB7E3300428F44 /* UIColor+Extension.swift in Sources */,
 				894E16A727EDB974002041C0 /* InfoScrollView.swift in Sources */,
+				894E16A927EDE56E002041C0 /* DetailTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
